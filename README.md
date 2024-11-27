@@ -1,5 +1,5 @@
 # BoatFactory
-lab 4
+lab 4 sem 3
 
 Условие:
 # Обработка коллекций.XML.JSON.UNIT-тестирование.
