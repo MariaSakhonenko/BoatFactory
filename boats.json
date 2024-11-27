@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "type": "Парусник",
+        "model": "Model X",
+        "enginePower": 100,
+        "maxSpeed": 50,
+        "releaseDate": "2024-11-26T12:00:00Z",
+        "price": 50000.00,
+        "sailArea": 200
+    },
+    {
+        "id": 2,
+        "type": "Парусник",
+        "model": "Model Y",
+        "enginePower": 120,
+        "maxSpeed": 55,
+        "releaseDate": "2023-06-15T12:00:00Z",
+        "price": 60000.00,
+        "sailArea": 220
+    }
+]
