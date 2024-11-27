@@ -8,10 +8,12 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class BoatFactoryTest {
+public class BoatFactoryTest
+{
 
     @Test
-    public void testAddBoat() {
+    public void testAddBoat()
+    {
         BoatList boatList = new BoatList();
         Sailboat sailboat = new Sailboat();
         sailboat.setId(1);
@@ -30,7 +32,8 @@ public class BoatFactoryTest {
     }
 
     @Test
-    public void testWriteAndReadBoatsToFile() throws IOException, ClassNotFoundException {
+    public void testWriteAndReadBoatsToFile() throws IOException, ClassNotFoundException
+    {
         BoatList boatList = new BoatList();
         Sailboat sailboat = new Sailboat();
         sailboat.setId(1);
@@ -52,7 +55,8 @@ public class BoatFactoryTest {
     }
 
     @Test
-    public void testXMLSerialization() throws Exception {
+    public void testXMLSerialization() throws Exception
+    {
         BoatList boatList = new BoatList();
         Sailboat sailboat = new Sailboat();
         sailboat.setId(1);
@@ -74,7 +78,8 @@ public class BoatFactoryTest {
     }
 
     @Test
-    public void testJSONSerialization() throws IOException {
+    public void testJSONSerialization() throws IOException
+    {
         BoatList boatList = new BoatList();
         Sailboat sailboat = new Sailboat();
         sailboat.setId(1);

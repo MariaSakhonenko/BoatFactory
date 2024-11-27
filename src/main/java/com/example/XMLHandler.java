@@ -10,9 +10,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class XMLHandler {
+public class XMLHandler
+{
 
-    public static void writeBoatsToXML(List<Boat> boats, String fileName) throws Exception {
+    public static void writeBoatsToXML(List<Boat> boats, String fileName) throws Exception
+    {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document doc = builder.newDocument();
@@ -20,7 +22,8 @@ public class XMLHandler {
         Element rootElement = doc.createElement("boats");
         doc.appendChild(rootElement);
 
-        for (Boat boat : boats) {
+        for (Boat boat : boats)
+        {
             Element boatElement = doc.createElement("boat");
 
             boatElement.setAttribute("id", String.valueOf(boat.getId()));
@@ -46,7 +49,8 @@ public class XMLHandler {
             price.appendChild(doc.createTextNode(String.valueOf(boat.getPrice())));
             boatElement.appendChild(price);
 
-            if (boat instanceof Sailboat) {
+            if (boat instanceof Sailboat)
+            {
                 Element sailArea = doc.createElement("sailArea");
                 sailArea.appendChild(doc.createTextNode(String.valueOf(((Sailboat) boat).getSailArea())));
                 boatElement.appendChild(sailArea);
@@ -62,7 +66,8 @@ public class XMLHandler {
         transformer.transform(source, result);
     }
 
-    public static List<Boat> readBoatsFromXML(String fileName) throws Exception {
+    public static List<Boat> readBoatsFromXML(String fileName) throws Exception
+    {
         List<Boat> boats = new ArrayList<>();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -70,10 +75,12 @@ public class XMLHandler {
 
         NodeList nodeList = doc.getElementsByTagName("boat");
 
-        for (int i = 0; i < nodeList.getLength(); i++) {
+        for (int i = 0; i < nodeList.getLength(); i++)
+        {
             Node node = nodeList.item(i);
 
-            if (node.getNodeType() == Node.ELEMENT_NODE) {
+            if (node.getNodeType() == Node.ELEMENT_NODE)
+            {
                 Element element = (Element) node;
                 int id = Integer.parseInt(element.getAttribute("id"));
                 String type = element.getAttribute("type");
@@ -83,7 +90,8 @@ public class XMLHandler {
                 Date releaseDate = new Date(element.getElementsByTagName("releaseDate").item(0).getTextContent());
                 double price = Double.parseDouble(element.getElementsByTagName("price").item(0).getTextContent());
 
-                if ("Парусник".equals(type)) {
+                if ("Парусник".equals(type))
+                {
                     int sailArea = Integer.parseInt(element.getElementsByTagName("sailArea").item(0).getTextContent());
                     Sailboat sailboat = new Sailboat();
                     sailboat.setId(id);
@@ -96,7 +104,6 @@ public class XMLHandler {
                     sailboat.setSailArea(sailArea);
                     boats.add(sailboat);
                 }
-                // Добавьте другие типы лодок, если необходимо
             }
         }
 

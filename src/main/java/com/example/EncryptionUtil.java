@@ -7,17 +7,20 @@ import javax.crypto.spec.SecretKeySpec;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class EncryptionUtil {
+public class EncryptionUtil
+{
 
     private static final String ALGORITHM = "AES";
 
-    public static SecretKey generateKey() throws Exception {
+    public static SecretKey generateKey() throws Exception
+    {
         KeyGenerator keyGen = KeyGenerator.getInstance(ALGORITHM);
         keyGen.init(256);
         return keyGen.generateKey();
     }
 
-    public static void encryptFile(String inputFile, String outputFile, SecretKey key) throws Exception {
+    public static void encryptFile(String inputFile, String outputFile, SecretKey key) throws Exception
+    {
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, key);
 
@@ -27,7 +30,8 @@ public class EncryptionUtil {
         Files.write(Paths.get(outputFile), outputBytes);
     }
 
-    public static void decryptFile(String inputFile, String outputFile, SecretKey key) throws Exception {
+    public static void decryptFile(String inputFile, String outputFile, SecretKey key) throws Exception
+    {
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.DECRYPT_MODE, key);
 
