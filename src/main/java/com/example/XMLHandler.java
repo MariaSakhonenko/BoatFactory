@@ -6,12 +6,15 @@ import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class XMLHandler
 {
+
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
 
     public static void writeBoatsToXML(List<Boat> boats, String fileName) throws Exception
     {
@@ -42,7 +45,7 @@ public class XMLHandler
             boatElement.appendChild(maxSpeed);
 
             Element releaseDate = doc.createElement("releaseDate");
-            releaseDate.appendChild(doc.createTextNode(boat.getReleaseDate().toString()));
+            releaseDate.appendChild(doc.createTextNode(dateFormat.format(boat.getReleaseDate())));
             boatElement.appendChild(releaseDate);
 
             Element price = doc.createElement("price");
@@ -87,7 +90,7 @@ public class XMLHandler
                 String model = element.getElementsByTagName("model").item(0).getTextContent();
                 int enginePower = Integer.parseInt(element.getElementsByTagName("enginePower").item(0).getTextContent());
                 int maxSpeed = Integer.parseInt(element.getElementsByTagName("maxSpeed").item(0).getTextContent());
-                Date releaseDate = new Date(element.getElementsByTagName("releaseDate").item(0).getTextContent());
+                Date releaseDate = dateFormat.parse(element.getElementsByTagName("releaseDate").item(0).getTextContent());
                 double price = Double.parseDouble(element.getElementsByTagName("price").item(0).getTextContent());
 
                 if ("Парусник".equals(type))

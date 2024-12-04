@@ -1,6 +1,11 @@
 package com.example;
 
-public class Sailboat extends Boat
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
+import java.io.Serializable;
+
+@JsonTypeName("Парусник")
+public class Sailboat extends Boat implements Serializable
 {
     private int sailArea;
 

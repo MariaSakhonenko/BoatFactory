@@ -1,18 +1,1 @@
-<boats>
-    <boat id="1" type="Парусник">
-        <model>Model X</model>
-        <enginePower>100</enginePower>
-        <maxSpeed>50</maxSpeed>
-        <releaseDate>2024-11-26T12:00:00Z</releaseDate>
-        <price>50000.00</price>
-        <sailArea>200</sailArea>
-    </boat>
-    <boat id="2" type="Парусник">
-        <model>Model Y</model>
-        <enginePower>120</enginePower>
-        <maxSpeed>55</maxSpeed>
-        <releaseDate>2023-06-15T12:00:00Z</releaseDate>
-        <price>60000.00</price>
-        <sailArea>220</sailArea>
-    </boat>
-</boats>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><boats><boat id="1" type="Парусник"><model>Model X</model><enginePower>100</enginePower><maxSpeed>50</maxSpeed><releaseDate>ср дек. 04 13:15:06 MSK 2024</releaseDate><price>50000.0</price><sailArea>200</sailArea></boat></boats>

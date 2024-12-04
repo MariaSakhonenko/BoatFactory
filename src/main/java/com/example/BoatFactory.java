@@ -47,7 +47,22 @@ public class BoatFactory
 
             SecretKey secretKey = EncryptionUtil.generateKey();
             EncryptionUtil.encryptFile("boats.json", "boats_encrypted.json", secretKey);
+            System.out.println("Файл boats.json успешно зашифрован в boats_encrypted.json");
+
             EncryptionUtil.decryptFile("boats_encrypted.json", "boats_decrypted.json", secretKey);
+            System.out.println("Файл boats_encrypted.json успешно расшифрован в boats_decrypted.json");
+
+            List<Boat> originalBoats = JSONHandler.readBoatsFromJSON("boats.json");
+            List<Boat> decryptedBoats = JSONHandler.readBoatsFromJSON("boats_decrypted.json");
+
+            if (originalBoats.equals(decryptedBoats))
+            {
+                System.out.println("Содержимое файлов идентично. Шифрование и дешифрование выполнены успешно.");
+            }
+            else
+            {
+                System.out.println("Содержимое файлов отличается. Проверьте алгоритмы шифрования и дешифрования.");
+            }
 
             ZipUtil.zipFile("boats.json", "boats.zip");
 

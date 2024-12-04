@@ -1,8 +1,17 @@
 package com.example;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public abstract class Boat
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
+@JsonSubTypes(
+        {
+        @JsonSubTypes.Type(value = Sailboat.class, name = "Парусник")
+        })
+public abstract class Boat implements Serializable
 {
     private int id;
     private String type;
@@ -11,6 +20,7 @@ public abstract class Boat
     private int maxSpeed;
     private Date releaseDate;
     private double price;
+
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
