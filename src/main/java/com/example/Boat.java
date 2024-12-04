@@ -9,7 +9,9 @@ import java.util.Date;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
 @JsonSubTypes(
         {
-        @JsonSubTypes.Type(value = Sailboat.class, name = "Парусник")
+        @JsonSubTypes.Type(value = Sailboat.class, name = "Парусник"),
+        @JsonSubTypes.Type(value = Motorboat.class, name = "Моторная лодка"),
+        @JsonSubTypes.Type(value = Catamaran.class, name = "Катамаран")
         })
 public abstract class Boat implements Serializable
 {
@@ -20,7 +22,6 @@ public abstract class Boat implements Serializable
     private int maxSpeed;
     private Date releaseDate;
     private double price;
-
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }

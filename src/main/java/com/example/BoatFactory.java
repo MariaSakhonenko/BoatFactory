@@ -1,7 +1,6 @@
 package com.example;
 
 import javax.crypto.SecretKey;
-import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -26,42 +25,73 @@ public class BoatFactory
         sailboat.setPrice(50000.00);
         sailboat.setSailArea(200);
 
-        boatList.addBoat(sailboat);
-        boatMap.addBoat(sailboat);
+        System.out.println("Добавление новой моторной лодки");
+        Motorboat motorboat = new Motorboat();
+        motorboat.setId(2);
+        motorboat.setType("Моторная лодка");
+        motorboat.setModel("Model Y");
+        motorboat.setEnginePower(200);
+        motorboat.setMaxSpeed(80);
+        motorboat.setReleaseDate(new Date());
+        motorboat.setPrice(70000.00);
+        motorboat.setFuelCapacity(500);
 
+        System.out.println("Добавление нового катамарана");
+        Catamaran catamaran = new Catamaran();
+        catamaran.setId(3);
+        catamaran.setType("Катамаран");
+        catamaran.setModel("Model Z");
+        catamaran.setEnginePower(150);
+        catamaran.setMaxSpeed(60);
+        catamaran.setReleaseDate(new Date());
+        catamaran.setPrice(80000.00);
+        catamaran.setPassengerCapacity(20);
+
+        boatList.addBoat(sailboat);
+        boatList.addBoat(motorboat);
+        boatList.addBoat(catamaran);
+
+        boatMap.addBoat(sailboat);
+        boatMap.addBoat(motorboat);
+        boatMap.addBoat(catamaran);
+
+        System.out.println("\nПервичный вывод списка лодок:");
         boatList.getBoats().forEach(System.out::println);
 
         try
         {
             BoatFileManager.writeBoatsToFile(boatList.getBoats(), "boats.dat");
+
             List<Boat> boatsFromFile = BoatFileManager.readBoatsFromFile("boats.dat");
+            System.out.println("\nВывод списка лодок после чтения из файла boats.dat:");
             boatsFromFile.forEach(System.out::println);
 
             XMLHandler.writeBoatsToXML(boatList.getBoats(), "boats.xml");
+
             List<Boat> boatsFromXML = XMLHandler.readBoatsFromXML("boats.xml");
+            System.out.println("\nВывод списка лодок после чтения из XML boats.xml:");
             boatsFromXML.forEach(System.out::println);
 
             JSONHandler.writeBoatsToJSON(boatList.getBoats(), "boats.json");
+
             List<Boat> boatsFromJSON = JSONHandler.readBoatsFromJSON("boats.json");
+            System.out.println("\nВывод списка лодок после чтения из JSON boats.json:");
             boatsFromJSON.forEach(System.out::println);
 
             SecretKey secretKey = EncryptionUtil.generateKey();
             EncryptionUtil.encryptFile("boats.json", "boats_encrypted.json", secretKey);
-            System.out.println("Файл boats.json успешно зашифрован в boats_encrypted.json");
-
             EncryptionUtil.decryptFile("boats_encrypted.json", "boats_decrypted.json", secretKey);
-            System.out.println("Файл boats_encrypted.json успешно расшифрован в boats_decrypted.json");
 
             List<Boat> originalBoats = JSONHandler.readBoatsFromJSON("boats.json");
             List<Boat> decryptedBoats = JSONHandler.readBoatsFromJSON("boats_decrypted.json");
 
             if (originalBoats.equals(decryptedBoats))
             {
-                System.out.println("Содержимое файлов идентично. Шифрование и дешифрование выполнены успешно.");
+                System.out.println("\nСодержимое файлов идентично. Шифрование и дешифрование выполнены успешно.");
             }
             else
             {
-                System.out.println("Содержимое файлов отличается. Проверьте алгоритмы шифрования и дешифрования.");
+                System.out.println("\nСодержимое файлов отличается. Проверьте алгоритмы шифрования и дешифрования.");
             }
 
             ZipUtil.zipFile("boats.json", "boats.zip");
